@@ -18,7 +18,6 @@ const login = async (email, password) => {
                 password,
             },
         });
-        console.log(res.data);
         if (res.data.status === 'Success') {
             showAlert('success', 'Logged in successfully!');
             window.setTimeout(() => {
@@ -27,7 +26,6 @@ const login = async (email, password) => {
         }
     } catch (err) {
         showAlert('error', 'ERROR');
-        console.log(err.response.data);
     }
 };
 if (document.querySelector('.form--login')) {

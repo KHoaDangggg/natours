@@ -17,7 +17,6 @@ const handleExpiredErr = () =>
     new appError('Your token was expired. Please login again', 401);
 const sendErrProd = (err, req, res) => {
     //API
-    console.log(err);
     if (req.originalUrl.startsWith('/api')) {
         if (err.isOperational) {
             return res.status(err.statusCode).json({
@@ -43,7 +42,6 @@ const sendErrProd = (err, req, res) => {
 };
 
 const sendErrDev = (err, req, res) => {
-    console.log(err);
     // API
     if (req.originalUrl.startsWith('/api')) {
         return res.status(err.statusCode).json({

@@ -6,4 +6,3 @@ let b = {
     name: 2,
 };
 a = b;
-console.log(a);

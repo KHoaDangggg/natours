@@ -14,6 +14,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import xss from 'xss-clean';
 import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 import * as url from 'url';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -101,7 +102,7 @@ app.use(
         ],
     })
 );
-
+app.use(compression());
 // Test middleware
 app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();

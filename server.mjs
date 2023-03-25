@@ -8,7 +8,6 @@ process.on('uncaughtException', (err) => {
 });
 dotenv.config({ path: './config.env' });
 
-console.log(process.env.NODE_ENV);
 //DB Connection
 const db = process.env.DATABASE.replace(
     '<PASSWORD>',
