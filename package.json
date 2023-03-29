@@ -5,9 +5,9 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "start": "node ./server.mjs",
+        "start": "node ./index.mjs",
         "start:prod": "cross-env NODE_ENV=production && npm start",
-        "debug": "ndb ./server.mjs",
+        "debug": "ndb ./index.mjs",
         "watch:js": "parcel watch ./public/js/index.mjs --out-dir ./public/js --out-file bundle.js",
         "build:js": "parcel watch ./public/js/index.mjs --out-dir ./public/js --out-file bundle.js"
     },
