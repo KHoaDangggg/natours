@@ -48,6 +48,7 @@ const logout = async () => {
             location.reload(true);
         }
     } catch (error) {
+        console.log(error);
         showAlert('error', 'Logged out');
     }
 };
