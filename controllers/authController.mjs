@@ -65,8 +65,8 @@ const logOut = catchAsync(async (req, res, next) => {
     //     httpOnly: true,
     //     expires: new Date(Date.now() + 10 * 1000),
     // });
-    res.clearCookie('jwt');
-    console.log(req.cookies.jwt);
+    if (res.clearCookie('jwt')) console.log('Logging out...');
+
     res.status(200).json({
         status: 'success',
     });
