@@ -24,7 +24,7 @@ const createSendToken = (user, statusCode, req, res) => {
         expires: new Date(
             Date.now() + process.env.COOKIE_JWT_EXPIRE_IN * 24 * 3600 * 1000
         ),
-        secure: req.secure || req.headers('x-forwarded-proto' === 'https'),
+        //secure: req.secure || req.headers('x-forwarded-proto' === 'https'),
     };
     res.cookie('jwt', token, cookieOptions);
     res.status(statusCode).json({
@@ -61,10 +61,12 @@ const login = catchAsync(async (req, res, next) => {
     createSendToken(user, 201, req, res);
 });
 const logOut = catchAsync(async (req, res, next) => {
-    res.cookie('jwt', 'logout', {
-        httpOnly: true,
-        expires: new Date(Date.now() + 10 * 1000),
-    });
+    // res.cookie('jwt', 'logout', {
+    //     httpOnly: true,
+    //     expires: new Date(Date.now() + 10 * 1000),
+    // });
+    res.clearCookie('jwt');
+    console.log(req.cookies.jwt);
     res.status(200).json({
         status: 'success',
     });
