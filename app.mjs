@@ -15,11 +15,13 @@ import xss from 'xss-clean';
 import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import cors from 'cors';
 import * as url from 'url';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const app = express();
+app.enable('trust proxy');
 app.use(function (req, res, next) {
     res.setHeader(
         'Content-Security-Policy',
@@ -28,6 +30,10 @@ app.use(function (req, res, next) {
     next();
 });
 //1. Global middlewares
+
+app.use(cors());
+
+app.options('*', cors());
 //. Set template engines
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
@@ -108,6 +114,7 @@ app.use((req, res, next) => {
     req.requestTime = new Date().toISOString();
     next();
 });
+
 //2. Route
 app.use('/', viewsRouter);
 

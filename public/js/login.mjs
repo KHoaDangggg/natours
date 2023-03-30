@@ -53,6 +53,7 @@ const logout = async () => {
 
 if (document.querySelector('.nav__el--logout')) {
     document.querySelector('.nav__el--logout').onclick = (e) => {
+        e.preventDefault();
         logout();
     };
 }

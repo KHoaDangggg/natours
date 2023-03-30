@@ -18,15 +18,15 @@ const signToken = (id) => {
     );
 };
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
     const token = signToken(user._id);
     const cookieOptions = {
         httpOnly: true,
         expires: new Date(
             Date.now() + process.env.COOKIE_JWT_EXPIRE_IN * 24 * 3600 * 1000
         ),
+        secure: req.secure || req.headers('x-forwarded-proto' === 'https'),
     };
-    if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
     res.cookie('jwt', token, cookieOptions);
     res.status(statusCode).json({
         status: 'Success',
