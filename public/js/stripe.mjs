@@ -6,7 +6,7 @@ const bookTour = async (tourID) => {
     try {
         //1. Get checkout session from API
         const session = await axios(
-            `https://natours-beige.vercel.app/api/v1/booking/checkout-session/${tourID}`
+            `/api/v1/booking/checkout-session/${tourID}`
         );
         //2. Create checkout form + charge credit card
         stripe.redirectToCheckout({

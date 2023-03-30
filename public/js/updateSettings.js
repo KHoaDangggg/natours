@@ -1,8 +1,8 @@
 const updateSetting = async (data, type) => {
     const url =
         type === 'password'
-            ? 'https://natours-beige.vercel.app/api/v1/users/updateMyPassword'
-            : 'https://natours-beige.vercel.app/api/v1/users/updateMe';
+            ? '/api/v1/users/updateMyPassword'
+            : '/api/v1/users/updateMe';
 
     await axios({
         method: 'PATCH',

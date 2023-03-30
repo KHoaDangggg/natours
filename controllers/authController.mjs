@@ -5,7 +5,6 @@ import appError from '../ultils/appError.mjs';
 import { promisify } from 'util';
 import Email from '../ultils/email.mjs';
 import crypto from 'crypto';
-import { hostname } from 'os';
 const signToken = (id) => {
     return jwt.sign(
         {
@@ -44,7 +43,7 @@ const signup = catchAsync(async (req, res, next) => {
         passwordChangedAt: req.body.passwordChangedAt,
     });
     await new Email(newUser, url).sendWelcome();
-    createSendToken(newUser, 201, res);
+    createSendToken(newUser, 201, req, res);
 });
 
 const login = catchAsync(async (req, res, next) => {
@@ -59,7 +58,7 @@ const login = catchAsync(async (req, res, next) => {
     if (!user || !correct)
         return next(new appError('Incorrect email or password', 401));
     //4. Send token to user
-    createSendToken(user, 201, res);
+    createSendToken(user, 201, req, res);
 });
 const logOut = catchAsync(async (req, res, next) => {
     res.cookie('jwt', 'logout', {
@@ -203,7 +202,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
     //3. Update changedPasswordAt
 
     //4. Log user in with JWT
-    createSendToken(user, 201, res);
+    createSendToken(user, 201, req, res);
 });
 
 const updatePassword = catchAsync(async (req, res, next) => {
@@ -221,7 +220,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;
     //4. Log user in, send JWT
-    createSendToken(user, 201, res);
+    createSendToken(user, 201, req, res);
 });
 export {
     signup,
