@@ -1,8 +1,8 @@
 const updateSetting = async (data, type) => {
     const url =
         type === 'password'
-            ? 'https://natours-beige.vercel.app/updateMyPassword'
-            : 'https://natours-beige.vercel.app/updateMe';
+            ? 'https://natours-beige.vercel.app/api/v1/users/updateMyPassword'
+            : 'https://natours-beige.vercel.app/api/v1/users/updateMe';
 
     await axios({
         method: 'PATCH',
@@ -19,5 +19,21 @@ if (document.querySelector('.form-user-data')) {
         form.append('email', document.querySelector('#email').value);
         form.append('photo', document.querySelector('#photo').files[0]);
         updateSetting(form, 'data');
+    };
+}
+if (document.querySelector('.form-user-settings')) {
+    document.querySelector('.form-user-settings').onsubmit = (e) => {
+        e.preventDefault();
+        const form = new FormData();
+        form.append(
+            'password-current',
+            document.querySelector('#password-current').value
+        );
+        form.append('password', document.querySelector('#password').value);
+        form.append(
+            'password-confirm',
+            document.querySelector('#password-confirm').value
+        );
+        updateSetting(form, 'password');
     };
 }
