@@ -60,17 +60,16 @@ const login = catchAsync(async (req, res, next) => {
     //4. Send token to user
     createSendToken(user, 201, req, res);
 });
-const logOut = catchAsync(async (req, res, next) => {
-    const log = 1;
-    res.cookie('jwt', log, {
+const logOut = (req, res, next) => {
+    res.cookie('jwt', 'logout', {
         httpOnly: true,
-        expires: new Date(Date.now() + 100 * 1000),
+        expires: new Date(Date.now() + 10 * 1000),
     });
 
     res.status(200).json({
         status: 'success',
     });
-});
+};
 const protect = catchAsync(async (req, res, next) => {
     //1. Check token exist
     let token;
