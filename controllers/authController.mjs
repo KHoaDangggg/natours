@@ -61,11 +61,11 @@ const login = catchAsync(async (req, res, next) => {
     createSendToken(user, 201, req, res);
 });
 const logOut = catchAsync(async (req, res, next) => {
-    res.cookie('jwt', 'logout', {
-        httpOnly: true,
-        expires: new Date(Date.now() + 10 * 1000),
-    });
-
+    // res.cookie('jwt', 'logout', {
+    //     httpOnly: true,
+    //     expires: new Date(Date.now() + 10 * 1000),
+    // });
+    res.clearCookie('jwt', { path: '/', httpOnly: true });
     res.status(200).json({
         status: 'success',
     });
