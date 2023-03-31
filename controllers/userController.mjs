@@ -29,7 +29,7 @@ const resizeUserPhoto = catchAsync(async (req, res, next) => {
             .resize(500, 500)
             .toFormat('jpeg')
             .jpeg({ quality: 90 })
-            .toFile(`/img/users/${req.file.filename}`);
+            .toFile(`img/users/${req.file.filename}`);
         next();
     } catch (error) {
         console.log('error in resize');
