@@ -39,7 +39,6 @@ if (document.querySelector('.form--login')) {
 
 const logout = async () => {
     try {
-        console.log('Log out ...');
         const res = await axios({
             method: 'POST',
             url: '/api/v1/users/logout',

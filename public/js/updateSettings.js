@@ -5,7 +5,7 @@ const updateSetting = async (data, type) => {
             : '/api/v1/users/updateMe';
 
     await axios({
-        method: 'PATCH',
+        method: 'POST',
         url,
         data,
     });
