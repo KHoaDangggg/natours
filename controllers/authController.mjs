@@ -28,7 +28,7 @@ const createSendToken = (user, statusCode, req, res) => {
     };
     res.cookie('jwt', token, cookieOptions);
     res.status(statusCode).json({
-        status: 'Success',
+        status: 'success',
         token,
         user,
     });
@@ -61,11 +61,12 @@ const login = catchAsync(async (req, res, next) => {
     createSendToken(user, 201, req, res);
 });
 const logOut = catchAsync(async (req, res, next) => {
-    // res.cookie('jwt', 'logout', {
-    //     httpOnly: true,
-    //     expires: new Date(Date.now() + 10 * 1000),
-    // });
-    res.clearCookie('jwt', { path: '/', httpOnly: true });
+    const log = 1;
+    res.cookie('jwt', log, {
+        httpOnly: true,
+        expires: new Date(Date.now() + 100 * 1000),
+    });
+
     res.status(200).json({
         status: 'success',
     });
