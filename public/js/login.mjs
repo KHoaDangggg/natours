@@ -41,7 +41,7 @@ const logout = async () => {
     try {
         console.log('Log out ...');
         const res = await axios({
-            method: 'GET',
+            method: 'POST',
             url: '/api/v1/users/logout',
         });
         if (res.data.status === 'success') {
