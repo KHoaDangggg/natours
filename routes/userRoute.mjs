@@ -36,7 +36,7 @@ router.use(protect);
 router.route('/updatePassword').patch(updatePassword);
 router
     .route('/updateMe')
-    .post(
+    .patch(
         getMe,
         uploadUserPhoto,
         resizeUserPhoto,

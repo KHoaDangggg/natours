@@ -34,7 +34,7 @@ const getAccount = (req, res) => {
 };
 
 const getMyTours = async (req, res, next) => {
-    const bookings = await Booking.find({ user: req.user._id });
+    const bookings = await Booking.find();
     const tourIds = bookings.map((el) => el.tour);
     const tours = await Tour.find({ _id: { $in: tourIds } });
     res.status(200).render('overview', {

@@ -16,7 +16,6 @@ const signToken = (id) => {
         }
     );
 };
-
 const createSendToken = (user, statusCode, req, res) => {
     const token = signToken(user._id);
     const cookieOptions = {
@@ -45,7 +44,6 @@ const signup = catchAsync(async (req, res, next) => {
     await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, req, res);
 });
-
 const login = catchAsync(async (req, res, next) => {
     //1. Check if email or password exist
     const { email, password } = req.body;
@@ -86,7 +84,6 @@ const protect = catchAsync(async (req, res, next) => {
     }
     //2. Verify token
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
     //3. Check if user still exist
     const freshUser = await User.findById(decoded.id);
     if (!freshUser) {
@@ -208,7 +205,7 @@ const resetPassword = catchAsync(async (req, res, next) => {
 
 const updatePassword = catchAsync(async (req, res, next) => {
     //1. Get user from collection
-    const user = await User.findById(req.user.id).select('+password');
+    const user = await User.findById(req.user._id).select('+password');
     //2. Check if POSTED password is correct
     const correct = await user.correctPassword(
         req.body.passwordCurrent,
@@ -220,6 +217,7 @@ const updatePassword = catchAsync(async (req, res, next) => {
     //3. If correct, update password
     user.password = req.body.password;
     user.passwordConfirm = req.body.passwordConfirm;
+    await user.save();
     //4. Log user in, send JWT
     createSendToken(user, 201, req, res);
 });
