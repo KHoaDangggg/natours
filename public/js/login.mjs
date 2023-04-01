@@ -25,7 +25,7 @@ const login = async (email, password) => {
             }, 200);
         }
     } catch (err) {
-        showAlert('error', 'ERROR');
+        showAlert('error', 'Wrong username or password');
     }
 };
 if (document.querySelector('.form--login')) {

@@ -825,6 +825,9 @@ body {
 .footer__logo img {
     height: 3rem;
 }
+.footer__logo img:hover {
+    cursor: pointer;
+}
 .footer__nav {
     list-style: none;
     display: -webkit-box;
@@ -833,6 +836,7 @@ body {
 }
 .footer__nav li {
     margin-left: 1.5rem;
+    list-style: none;
 }
 .footer__nav a {
     color: #777;

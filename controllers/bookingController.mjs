@@ -27,7 +27,7 @@ const checkOutSession = catchAsync(async (req, res) => {
                         name: `${tour.name} Tour`,
                         description: tour.summary,
                         images: [
-                            `https://wwww.natours.dev/img/tours/${tour.imageCover}`,
+                            `https://natours-beige.vercel.app/img/tours/${tour.imageCover}`,
                         ],
                     },
                 },
