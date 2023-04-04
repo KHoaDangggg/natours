@@ -2,6 +2,7 @@ import Tour from '../models/tourModel.mjs';
 import catchAsync from '../ultils/catchAsync.mjs';
 import appError from '../ultils/appError.mjs';
 import Booking from '../models/bookingModel.mjs';
+import User from '../models/userModel.mjs';
 const getOverview = catchAsync(async (req, res) => {
     const tours = await Tour.find();
 
@@ -42,4 +43,19 @@ const getMyTours = async (req, res, next) => {
         tours,
     });
 };
-export { getOverview, getTour, getLoginForm, getAccount, getMyTours };
+
+const getAllUsers = catchAsync(async (req, res, next) => {
+    const users = await User.find({});
+    res.status(200).render('users', {
+        title: 'Manage users',
+        users,
+    });
+});
+export {
+    getOverview,
+    getTour,
+    getLoginForm,
+    getAccount,
+    getMyTours,
+    getAllUsers,
+};

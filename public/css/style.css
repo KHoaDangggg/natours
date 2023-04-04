@@ -313,6 +313,7 @@ body {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
 @media only screen and (max-width: 62.5em) {
     .header {
@@ -1375,4 +1376,44 @@ input[type='submit'] {
     /*when navigating through the items using the arrow keys:*/
     background-color: DodgerBlue !important;
     color: #ffffff;
+}
+
+/* Users-card */
+.card-users {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.card {
+    flex-basis: 18%;
+    margin: 0 1% 2rem;
+}
+.card-body {
+    padding: 1rem 2rem;
+}
+.card-body h5 {
+    font-size: 1.7rem;
+    color: #484848;
+}
+.card-body p {
+    font-size: 1.4rem;
+    color: #484848;
+}
+.card-body a {
+    background-color: #ff5858;
+    font-size: 1.4rem;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+    text-decoration: none;
+    display: block;
+    width: 70%;
+    margin: 1rem auto 0;
+    text-align: center;
+}
+.card-body a:hover {
+    cursor: pointer;
+    transform: translate(-2px, -2px);
+    transition: all linear;
 }

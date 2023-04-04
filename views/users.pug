@@ -1,0 +1,17 @@
+extends base
+
+block append head 
+    
+
+block content 
+    .card-users
+        each user in users
+            .card(style='')
+                img.card-img-top(src=`img/users/${user.photo}`, alt=`Photo of ${user.name}`)
+                .card-body(data-userId = `${user.id}`)
+                    h5.card-title= user.name 
+                    - const role = (user.role)[0].toUpperCase() + (user.role).substring(1)
+                    p.card-text= role 
+                    p.card-text #{user.email}
+                    a Delete user
+
