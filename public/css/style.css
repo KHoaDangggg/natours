@@ -1417,3 +1417,18 @@ input[type='submit'] {
     transform: translate(-2px, -2px);
     transition: all linear;
 }
+
+/* Fiter - Overview */
+.filter-box {
+    height: 3rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+.filter-text {
+    font-size: 1.5rem;
+    color: black;
+    margin-right: 1rem;
+    font-weight: 600;
+}

@@ -3,9 +3,13 @@ import catchAsync from '../ultils/catchAsync.mjs';
 import appError from '../ultils/appError.mjs';
 import Booking from '../models/bookingModel.mjs';
 import User from '../models/userModel.mjs';
+import apiFeatures from '../ultils/APIFeatures.mjs';
 const getOverview = catchAsync(async (req, res) => {
-    const tours = await Tour.find();
-
+    console.log(req.query);
+    //EXECUTE QUERY
+    const features = new apiFeatures(Tour.find(), req.query).filter().sort();
+    const tours = await features.query;
+    //console.log(tours);
     res.status(200).render('overview', {
         title: 'All Tours',
         tours,

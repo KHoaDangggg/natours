@@ -1,6 +1,13 @@
 extends  base
 
 block content 
+    .filter-box 
+        .filter-text Sort 
+        select#Sort(name='Sort')
+            option ----------Sort----------
+            option(value='price')  Price (High - Low)
+            option(value='-price') Price (Low - High)
+            option(value='-ratingsAverage') Top Sellers
     section.overview
         .card-container 
             each tour in tours 
