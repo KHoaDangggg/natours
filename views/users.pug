@@ -13,5 +13,5 @@ block content
                     - const role = (user.role)[0].toUpperCase() + (user.role).substring(1)
                     p.card-text= role 
                     p.card-text #{user.email}
-                    a Delete user
+                    a(href=`/user/${user.id}`) More
 

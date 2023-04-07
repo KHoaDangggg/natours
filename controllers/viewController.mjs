@@ -20,6 +20,7 @@ const getTour = catchAsync(async (req, res, next) => {
         path: 'review',
         fields: 'review rating user',
     });
+    console.log(tour);
     if (!tour) next(new appError('There is no tour with that name', 404));
 
     res.status(200).render('tour', {
@@ -37,7 +38,6 @@ const getAccount = (req, res) => {
         title: 'Your acount',
     });
 };
-
 const getMyTours = async (req, res, next) => {
     const bookings = await Booking.find();
     const tourIds = bookings.map((el) => el.tour);
@@ -47,12 +47,24 @@ const getMyTours = async (req, res, next) => {
         tours,
     });
 };
-
 const getAllUsers = catchAsync(async (req, res, next) => {
     const users = await User.find({});
     res.status(200).render('users', {
         title: 'Manage users',
         users,
+    });
+});
+const getUser = catchAsync(async (req, res, next) => {
+    const userId = req.params.userId;
+    const user = await User.findById(userId);
+    const bookings = await Booking.find({ user: userId }).select('-user');
+    console.log(bookings);
+    if (!user) next(new appError('User does not exist', 404));
+
+    res.status(200).render('user', {
+        title: `User | ${user.name}`,
+        search_user: user,
+        bookings,
     });
 });
 export {
@@ -62,4 +74,5 @@ export {
     getAccount,
     getMyTours,
     getAllUsers,
+    getUser,
 };

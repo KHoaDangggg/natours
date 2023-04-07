@@ -1,7 +1,7 @@
 async function autocomplete(inp) {
     async function getData() {
-        const choices = await fetch('http://127.0.0.1:3000/api/v1/tours').then(
-            (response) => response.json()
+        const choices = await fetch('/api/v1/tours').then((response) =>
+            response.json()
         );
         return choices.data.doc.map((el) => el.name.toUpperCase());
     }
@@ -28,9 +28,7 @@ async function autocomplete(inp) {
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
-            if (
-                arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()
-            ) {
+            if (arr[i].includes(val.toUpperCase())) {
                 /*create a DIV element for each matching element:*/
                 b = document.createElement('DIV');
                 /*make the matching letters bold:*/

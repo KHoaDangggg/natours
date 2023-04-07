@@ -3,15 +3,16 @@ const deleteUser = async (userId) => {
         method: 'DELETE',
         url: `/api/v1/users/${userId}`,
     });
+    showAlert('success', 'This user has been deleted successfully!');
 };
 
-const deleteBtns = document.querySelectorAll('.card-body a');
+const deleteBtns = document.querySelectorAll('.del-btn');
 deleteBtns.forEach((btn) => {
-    btn.onclick = (e) => {
-        const id = e.target.closest('.card-body').dataset.userid;
+    btn.onclick = async (e) => {
+        const id = e.target.dataset.userid;
         if (id) {
-            deleteUser(id);
+            await deleteUser(id);
         }
-        e.target.closest('.card').style.display = 'none';
+        window.location.replace('/all-users');
     };
 });

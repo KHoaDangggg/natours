@@ -1432,3 +1432,87 @@ input[type='submit'] {
     margin-right: 1rem;
     font-weight: 600;
 }
+
+/* user information */
+.search_user-container {
+    padding: 5% 15%;
+    display: flex;
+}
+.search_user-photo {
+    width: 30%;
+}
+.search_user-photo img {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+.search_user-info {
+    width: 70%;
+    padding-left: 7rem;
+    color: #4e4d4d;
+}
+.search_user-info h3 {
+    font-size: 3rem;
+    padding-bottom: 2rem;
+}
+.search_user-info p {
+    font-size: 1.8rem;
+}
+.del-btn {
+    font-size: 1.6rem;
+    width: 16rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    background-color: #f54343;
+    color: white;
+    font-weight: 600;
+    border-radius: 2.5rem;
+    margin-top: 2rem;
+    opacity: 0.8;
+}
+
+.del-btn:hover {
+    cursor: pointer;
+    transform: translate(-2px, -2px);
+    transition: all linear 0.1s;
+    opacity: 1;
+}
+
+.search_user-booking {
+    display: flex;
+    margin: 6rem 0;
+    color: #4e4d4d;
+    justify-content: center;
+}
+h1 {
+    font-size: 3rem;
+    color: #4e4d4d;
+    text-align: center;
+    text-transform: uppercase;
+}
+.booked-tour {
+    flex-basis: 25%;
+    margin: 0 2rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+    padding-bottom: 1.5rem;
+
+    cursor: pointer;
+}
+.booked-tour:hover {
+    transform: translate(-2px, -2px);
+    transition: all linear 0.1s;
+}
+.booked-tour img {
+    width: 100%;
+}
+.booked-tour h3 {
+    padding: 1rem 2rem 0;
+    font-size: 1.6rem;
+}
+.booked-tour p {
+    padding: 0.5rem 2rem 0;
+    font-size: 1.4rem;
+}

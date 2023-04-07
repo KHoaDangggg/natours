@@ -1,0 +1,26 @@
+extends base
+
+
+block content 
+    .search_user-container 
+        .search_user-photo: img(src=`https://natours-beige.vercel.app/img/users/${search_user.photo}`, alt=`Photo of ${search_user.name}`)
+        .search_user-info 
+            h3 #{search_user.name }
+            p Role:   #{(search_user.role)[0].toUpperCase() + (search_user.role).substring(1)}
+            p Email:  #{search_user.email}
+            p Booked tours: #{bookings.length} 
+            .del-btn(data-userid = `${search_user.id}`) Delete user!
+    h1 Booked Tours
+    .search_user-booking 
+        - if(bookings.length === 0) 
+            div(style="font-size:2rem")= `${search_user.name} has not booked any tour!`
+        - if(bookings.length !== 0) 
+            each booking in bookings 
+                .booked-tour
+                    img(src=`https://natours-beige.vercel.app/img/tours/${booking.tour.imageCover}`, alt=`Photo of ${booking.name}`)
+                    h3= booking.tour.name
+                    p= booking.tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
+                    p=  booking.tour.startLocation.description
+                    p Description:   
+                    p= booking.tour.summary
+                    p= booking.paid?"Paid":"Unpaid"
