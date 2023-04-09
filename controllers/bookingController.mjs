@@ -44,11 +44,14 @@ const checkOutSession = catchAsync(async (req, res) => {
 });
 
 const createBookingCheckout = catchAsync(async (session) => {
-    const user = (await User.find({ email: session.customer_email }))._id;
-    const tour = session.client_reference_id;
-    const price = session.amount_total / 100;
-    await Booking.create({ tour, user, price });
-    res.redirect(`${req.protocol}://${req.get('host')}/`);
+    // const user = (await User.find({ email: session.customer_email }))._id;
+    // const tour = session.client_reference_id;
+    // const price = session.amount_total / 100;
+    await Booking.create({
+        tour: '5c88fa8cf4afda39709c2955',
+        user: '6419e2f2d23b4c896d343b5e',
+        price: 1047,
+    });
 });
 
 const bookingCheckout = async (req, res, next) => {
