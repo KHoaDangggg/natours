@@ -16,6 +16,7 @@ import hpp from 'hpp';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 import * as url from 'url';
 import { bookingCheckout } from './controllers/bookingController.mjs';
 const __filename = url.fileURLToPath(import.meta.url);
@@ -68,7 +69,7 @@ const rateLimiter = rateLimit({
 app.use('/api', rateLimiter);
 app.use(
     '/webhook-checkout',
-    express.json({ type: 'application/json' }),
+    bodyParser.raw({ type: 'application/json' }),
     bookingCheckout
 );
 //. Body parser, read data from body to req.body
