@@ -44,7 +44,8 @@ const checkOutSession = catchAsync(async (req, res) => {
 });
 
 const createBookingCheckout = catchAsync(async (session) => {
-    const user = (await User.find({ email: session.customer_email })).id;
+    const user = (await User.find({ email: session.customer_details.email }))
+        .id;
     const tour = session.client_reference_id;
     const price = session.display_items[0].price_data.unit_amount / 100;
     if (!tour || !user || !price) return next();
