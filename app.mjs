@@ -17,6 +17,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
 import * as url from 'url';
+import { bookingCheckout } from './controllers/bookingController.mjs';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
@@ -55,25 +56,7 @@ app.use(
         },
     })
 );
-// app.use(
-//     helmet.contentSecurityPolicy({
-//         directives: {
-//             defaultSrc: ["'self'", 'data:', 'blob:'],
 
-//             fontSrc: ["'self'", 'https:', 'data:'],
-
-//             //scriptSrc: ["'self'", 'unsafe-inline'],
-
-//             scriptSrc: ["'self'", 'https://*.cloudflare.com'],
-
-//             scriptSrcElem: ["'self'", 'https:', 'https://*.cloudflare.com'],
-
-//             //styleSrc: ["'self'", 'https:', 'unsafe-inline'],
-
-//             connectSrc: ["'self'", 'data', 'https://*.cloudflare.com'],
-//         },
-//     })
-// );
 //. Development logging
 app.use(morgan('dev'));
 //. Limit request from same API
@@ -83,13 +66,19 @@ const rateLimiter = rateLimit({
     message: 'Too many request to server',
 });
 app.use('/api', rateLimiter);
+app.use(
+    '/webhook-checkout',
+    express.raw({ type: 'application/json' }),
+    bookingCheckout
+);
 //. Body parser, read data from body to req.body
+
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(
     express.json({
         limit: '10kb',
     })
 );
-app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 //. Data sanitization against NoSQL query injection
 app.use(mongoSanitize());

@@ -33,6 +33,11 @@ const getLoginForm = (req, res) => {
         title: 'Login to your acount',
     });
 };
+const getSignupForm = (req, res) => {
+    res.status(200).render('signup', {
+        title: 'Create your own acount',
+    });
+};
 const getAccount = (req, res) => {
     res.status(200).render('account', {
         title: 'Your acount',
@@ -67,6 +72,7 @@ const getUser = catchAsync(async (req, res, next) => {
         bookings,
     });
 });
+
 export {
     getOverview,
     getTour,
@@ -75,4 +81,5 @@ export {
     getMyTours,
     getAllUsers,
     getUser,
+    getSignupForm,
 };

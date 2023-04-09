@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import pug from 'pug';
 import { convert } from 'html-to-text';
 import * as url from 'url';
-
+import nodemailerSendgrid from 'nodemailer-sendgrid';
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 class Email {
@@ -14,7 +14,13 @@ class Email {
     }
 
     newTransport() {
-        if (process.env.NODE_ENV === 'production') return 1;
+        if (process.env.NODE_ENV === 'production') {
+            return nodemailer.createTransport(
+                nodemailerSendgrid({
+                    apiKey: process.env.SENDGRID_PASSWORD,
+                })
+            );
+        }
 
         return nodemailer.createTransport({
             host: process.env.EMAIL_HOST,
@@ -38,7 +44,7 @@ class Email {
         );
         //2. Define email options
         const emailOption = {
-            from: 'DangPhucKhoa',
+            from: 'dangphuckhoa2003@gmail.com',
             to: this.to,
             subject,
             html,

@@ -58,3 +58,38 @@ if (document.querySelector('.nav__el--logout')) {
         logout();
     };
 }
+
+const signup = async (name, email, password, passwordConfirm) => {
+    try {
+        const res = await axios({
+            method: 'POST',
+            url: '/api/v1/users/signup',
+            data: {
+                name,
+                email,
+                password,
+                passwordConfirm,
+            },
+        });
+        if (res.data.status === 'success') {
+            showAlert('success', 'Create successfully!');
+            window.setTimeout(() => {
+                location.assign('/');
+            }, 200);
+        }
+    } catch (err) {
+        console.log(err);
+        showAlert('error', 'Invalid username or password or password confirm');
+    }
+};
+if (document.querySelector('.form--signup')) {
+    document.querySelector('.form--signup').onsubmit = (e) => {
+        e.preventDefault();
+        const name = document.querySelector('#name').value;
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#password').value;
+        const passwordConfirm =
+            document.querySelector('#passwordConfirm').value;
+        signup(name, email, password, passwordConfirm);
+    };
+}

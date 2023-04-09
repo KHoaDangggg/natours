@@ -4,22 +4,23 @@ import {
     protect,
     restrictTo,
 } from '../controllers/authController.mjs';
-import { createBookingCheckout } from '../controllers/bookingController.mjs';
 import {
     getAccount,
     getAllUsers,
     getLoginForm,
     getMyTours,
     getOverview,
+    getSignupForm,
     getTour,
     getUser,
 } from '../controllers/viewController.mjs';
 
 const Router = express.Router();
 
-Router.get('/', createBookingCheckout, isLoggedIn, getOverview);
+Router.get('/', isLoggedIn, getOverview);
 Router.get('/tour/:slug', isLoggedIn, getTour);
 Router.get('/login', getLoginForm);
+Router.get('/signup', getSignupForm);
 Router.get('/me', protect, getAccount);
 Router.get('/my-tours', protect, getMyTours);
 Router.get('/all-users', protect, restrictTo('admin'), getAllUsers);
