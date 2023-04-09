@@ -23,7 +23,7 @@ const createSendToken = (user, statusCode, req, res) => {
         expires: new Date(
             Date.now() + process.env.COOKIE_JWT_EXPIRE_IN * 24 * 3600 * 1000
         ),
-        //secure: req.secure || req.headers('x-forwarded-proto' === 'https'),
+        secure: req.secure || req.headers('x-forwarded-proto' === 'https'),
     };
     res.cookie('jwt', token, cookieOptions);
     res.status(statusCode).json({
