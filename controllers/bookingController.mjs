@@ -48,6 +48,7 @@ const createBookingCheckout = catchAsync(async (session) => {
     const tour = session.client_reference_id;
     const price = session.amount_total / 100;
     if (!tour || !user || !price) return next();
+    console.log(user, price, tour);
     await Booking.create({ tour, user, price });
     res.redirect(`${req.protocol}://${req.get('host')}/my-tours`);
 });
