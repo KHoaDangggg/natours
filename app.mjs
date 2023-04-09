@@ -68,7 +68,7 @@ const rateLimiter = rateLimit({
 app.use('/api', rateLimiter);
 app.use(
     '/webhook-checkout',
-    express.raw({ type: 'application/json' }),
+    express.json({ type: 'application/json' }),
     bookingCheckout
 );
 //. Body parser, read data from body to req.body
