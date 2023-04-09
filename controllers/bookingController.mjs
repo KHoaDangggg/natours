@@ -15,6 +15,7 @@ const checkOutSession = catchAsync(async (req, res) => {
         success_url: `${req.protocol}://${req.get('host')}/my-tours`,
         cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
         client_reference_id: req.params.tourID,
+        customer_email: req.user.email,
         line_items: [
             {
                 price_data: {
@@ -47,13 +48,11 @@ const createBookingCheckout = catchAsync(async (session) => {
         ._id;
     const tour = session.client_reference_id;
     const price = session.amount_total / 100;
-    //if (!tour || !user || !price) return next();
-    console.log(user, price, tour);
     await Booking.create({ tour, user, price });
     res.redirect(`${req.protocol}://${req.get('host')}/`);
 });
 
-const bookingCheckout = (req, res, next) => {
+const bookingCheckout = async (req, res, next) => {
     const signature = req.headers['stripe-signature'];
     let event;
     try {
@@ -67,7 +66,7 @@ const bookingCheckout = (req, res, next) => {
     }
 
     if (event.type === 'checkout.session.completed') {
-        createBookingCheckout(event.data.object);
+        await createBookingCheckout(event.data.object);
     }
     res.status(200).json({
         received: true,
