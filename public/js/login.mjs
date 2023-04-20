@@ -58,6 +58,12 @@ if (document.querySelector('.nav__el--logout')) {
         logout();
     };
 }
+if (document.querySelector('header .logout')) {
+    document.querySelector('header .logout').onclick = (e) => {
+        e.preventDefault();
+        logout();
+    };
+}
 
 const signup = async (name, email, password, passwordConfirm) => {
     try {

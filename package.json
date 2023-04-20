@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node ./index.mjs",
-        "start:prod": "cross-env NODE_ENV=production && npm start",
+        "nodemon": "nodemon ./index.mjs",
         "debug": "ndb ./index.mjs",
         "watch:js": "parcel watch ./public/js/index.mjs --out-dir ./public/js --out-file bundle.js",
         "build:js": "parcel watch ./public/js/index.mjs --out-dir ./public/js --out-file bundle.js"
@@ -52,7 +52,7 @@
         "eslint-plugin-prettier": "^4.2.1",
         "eslint-plugin-react": "^7.32.0",
         "ndb": "^1.1.5",
-        "nodemon": "^2.0.20",
+        "nodemon": "^2.0.22",
         "parcel-bundler": "^1.12.3",
         "prettier": "^2.8.2"
     },
