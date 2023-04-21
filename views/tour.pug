@@ -7,6 +7,9 @@ mixin overViewBox(label, text, icon)
         span.overview-box__label= label 
         span.overview-box__text= text
 block append head 
+    script(src='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js')
+    link(href='https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet')
+
 block content 
     section.section-header
         .header__hero
@@ -87,3 +90,7 @@ block content
                     button.btn.btn--green.span-all-rows#book-tour(data-tour-Id=`${tour.id}`) Book tour now!
                 else
                     a.btn.btn--green.span-all-rows(href='/login') Login to book tour
+block append script 
+    script(src="/js/mapBox.mjs") 
+    script(type="text/javascript" src="https://js.stripe.com/v3/")
+    script(src="/js/stripe.mjs") 

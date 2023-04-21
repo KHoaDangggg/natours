@@ -18,16 +18,12 @@ html
         //FOOTER
         include _footer
 
-        //-script(src="/js/mapBox.mjs") 
-        script(type="text/javascript" src="https://js.stripe.com/v3/")
-        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
-        script(src="/js/login.mjs") 
-        script(src="/js/updateSettings.js") 
-        script(src="/js/stripe.mjs") 
-        script(src="/js/autoCompleteSearch.mjs") 
-        script(src="/js/deleteUser.mjs") 
-        script(src="/js/filter.mjs") 
-        script(src="/js/index.mjs") 
+        block script 
+            script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js") 
+            script(src="/js/login.mjs") 
+            script(src="/js/autoCompleteSearch.mjs") 
+            script(src="/js/filter.mjs") 
+            script(src="/js/index.mjs") 
 
 
 

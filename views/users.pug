@@ -14,4 +14,5 @@ block content
                     p.card-text= role 
                     p.card-text #{user.email}
                     a(href=`/user/${user.id}`) More
-
+block append script 
+    script(src="/js/deleteUser.mjs") 

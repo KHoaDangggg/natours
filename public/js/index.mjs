@@ -17,18 +17,25 @@ const hideMenu = (hide, appear, translate) => () => {
         appear.style.opacity = 1;
     }
 };
-menuBar.onclick = (e) => {
-    const menuPopdown = document.querySelector('header .menu-options');
-    if (menuPopdown.style.display === 'block')
-        menuPopdown.style.display = 'none';
-    else menuPopdown.style.display = 'block';
-};
-headerLogo.onclick = () => {
-    window.location.replace('/');
-};
-
-settingMenu.onclick = hideMenu(setting, settingForm, -100);
-menuArrow.onclick = hideMenu(settingForm, setting, 100);
+if (menuBar) {
+    menuBar.onclick = (e) => {
+        const menuPopdown = document.querySelector('header .menu-options');
+        if (menuPopdown.style.display === 'block')
+            menuPopdown.style.display = 'none';
+        else menuPopdown.style.display = 'block';
+    };
+}
+if (headerLogo) {
+    headerLogo.onclick = () => {
+        window.location.replace('/');
+    };
+}
+if (settingMenu) {
+    settingMenu.onclick = hideMenu(setting, settingForm, -100);
+}
+if (menuArrow) {
+    menuArrow.onclick = hideMenu(settingForm, setting, 100);
+}
 
 window.onresize = () => {
     if (window.innerWidth > 640) {
