@@ -42,7 +42,7 @@ const signup = catchAsync(async (req, res, next) => {
         passwordConfirm,
         passwordChangedAt: new Date(Date.now()),
     });
-    await new Email(newUser, url).sendWelcome();
+    //await new Email(newUser, url).sendWelcome();
     createSendToken(newUser, 201, req, res);
 });
 const login = catchAsync(async (req, res, next) => {
