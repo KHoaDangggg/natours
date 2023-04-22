@@ -15,11 +15,13 @@ class Email {
 
     newTransport() {
         if (process.env.NODE_ENV === 'production') {
-            return nodemailer.createTransport(
-                nodemailerSendgrid({
-                    apiKey: process.env.SENDGRID_PASSWORD,
-                })
-            );
+            return nodemailer.createTransport({
+                service: 'SendGrid',
+                auth: {
+                    user: process.env.SENDGRID_USERNAME,
+                    pass: process.env.SENDGRID_PASSWORD,
+                },
+            });
         }
 
         return nodemailer.createTransport({
@@ -44,7 +46,7 @@ class Email {
         );
         //2. Define email options
         const emailOption = {
-            from: 'dangphuckhoa2003@gmail.com',
+            from: this.from,
             to: this.to,
             subject,
             html,
