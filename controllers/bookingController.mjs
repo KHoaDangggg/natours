@@ -7,6 +7,7 @@ const stripe = new Stripe(
     'sk_test_51MpCA0DfcEM9cIAm0SlXbB7WjZpXe7HEwSwCAjde0FZoLndTIYUnHJsp5F5HEcyEUpCy9zJiU2OIIFRf2t5KNnXx00PnlNRkfx'
 );
 const checkOutSession = catchAsync(async (req, res) => {
+    console.log('checkOutSession');
     //1. Get tour
     const tour = await Tour.findById(req.params.tourID);
     //2. Create checkout session
@@ -71,7 +72,6 @@ const bookingCheckout = async (req, res, next) => {
     }
 
     if (event.type === 'checkout.session.completed') {
-        console.log(event.data.object);
         createBookingCheckout(event.data.object);
     }
 

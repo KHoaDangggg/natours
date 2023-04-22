@@ -67,9 +67,9 @@ const rateLimiter = rateLimit({
     message: 'Too many request to server',
 });
 app.use('/api', rateLimiter);
-app.use(
+app.post(
     '/webhook-checkout',
-    bodyParser.raw({ type: 'application/json' }),
+    express.raw({ type: 'application/json' }),
     bookingCheckout
 );
 //. Body parser, read data from body to req.body
