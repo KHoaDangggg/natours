@@ -35,7 +35,6 @@ class Email {
     }
 
     async send(template, subject) {
-        //1. Render
         const html = pug.renderFile(
             `${__dirname}/../views/email/${template}.pug`,
             {
@@ -44,7 +43,6 @@ class Email {
                 subject,
             }
         );
-        //2. Define email options
         const emailOption = {
             from: this.from,
             to: this.to,
@@ -52,7 +50,6 @@ class Email {
             html,
             text: convert(html),
         };
-        //3. Send email
         await this.newTransport().sendMail(emailOption);
     }
 
