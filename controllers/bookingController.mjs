@@ -75,6 +75,6 @@ const bookingCheckout = (req, res, next) => {
         createBookingCheckout(event.data.object);
     }
 
-    res.status(200).json({ received: true });
+    res.status(200).json({ received: true, data: event.data.object });
 };
 export { checkOutSession, bookingCheckout };
