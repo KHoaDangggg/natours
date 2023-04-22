@@ -17,8 +17,6 @@ if (document.querySelector('.form-user-data')) {
         const form = new FormData();
         form.append('name', document.querySelector('#name').value);
         form.append('email', document.querySelector('#email').value);
-        // form.append('photo', document.querySelector('#photo').files[0]);
-        // console.log(document.querySelector('#photo').files[0]);
         updateSetting(form, 'data');
     };
 }

@@ -47,7 +47,6 @@ const logout = async () => {
             location.assign('/');
         }
     } catch (error) {
-        console.log(error);
         showAlert('error', 'Logged out');
     }
 };
@@ -84,7 +83,6 @@ const signup = async (name, email, password, passwordConfirm) => {
             }, 200);
         }
     } catch (err) {
-        console.log(err);
         showAlert('error', 'Invalid username or password or password confirm');
     }
 };

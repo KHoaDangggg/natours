@@ -5,11 +5,9 @@ import Booking from '../models/bookingModel.mjs';
 import User from '../models/userModel.mjs';
 import apiFeatures from '../ultils/APIFeatures.mjs';
 const getOverview = catchAsync(async (req, res) => {
-    console.log(req.query);
     //EXECUTE QUERY
     const features = new apiFeatures(Tour.find(), req.query).filter().sort();
     const tours = await features.query;
-    //console.log(tours);
     res.status(200).render('overview', {
         title: 'All Tours',
         tours,
@@ -20,7 +18,6 @@ const getTour = catchAsync(async (req, res, next) => {
         path: 'review',
         fields: 'review rating user',
     });
-    console.log(tour);
     if (!tour) next(new appError('There is no tour with that name', 404));
 
     res.status(200).render('tour', {
@@ -44,10 +41,11 @@ const getAccount = (req, res) => {
     });
 };
 const getMyTours = async (req, res, next) => {
-    const bookings = await Booking.find();
+    const user = req.user._id;
+    const bookings = await Booking.find({ user });
     const tourIds = bookings.map((el) => el.tour);
     const tours = await Tour.find({ _id: { $in: tourIds } });
-    res.status(200).render('overview', {
+    res.status(200).render('booking', {
         title: 'My tour',
         tours,
     });
@@ -63,7 +61,6 @@ const getUser = catchAsync(async (req, res, next) => {
     const userId = req.params.userId;
     const user = await User.findById(userId);
     const bookings = await Booking.find({ user: userId }).select('-user');
-    console.log(bookings);
     if (!user) next(new appError('User does not exist', 404));
 
     res.status(200).render('user', {
