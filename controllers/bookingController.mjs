@@ -56,7 +56,7 @@ const createBookingCheckout = catchAsync(async (session) => {
     });
 });
 
-const bookingCheckout = async (req, res, next) => {
+const bookingCheckout = (req, res, next) => {
     console.log('Booking Checkout');
     const signature = req.headers['stripe-signature'];
 
