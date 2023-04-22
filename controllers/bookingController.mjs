@@ -44,17 +44,20 @@ const checkOutSession = catchAsync(async (req, res) => {
 });
 
 const createBookingCheckout = catchAsync(async (session) => {
+    console.log('HEllo');
+    console.log(session);
     const user = (await User.find({ email: session.customer_email }))._id;
     const tour = session.client_reference_id;
     const price = session.amount_total / 100;
     await Booking.create({
         tour,
-        user: '6419e2f2d23b4c896d343b5e',
+        user,
         price,
     });
 });
 
 const bookingCheckout = async (req, res, next) => {
+    console.log('Booking Checkout');
     const signature = req.headers['stripe-signature'];
 
     let event;
@@ -68,8 +71,10 @@ const bookingCheckout = async (req, res, next) => {
         return res.status(400).send(`Webhook error: ${err.message}`);
     }
 
-    if (event.type === 'checkout.session.completed')
+    if (event.type === 'checkout.session.completed') {
+        console.log(event.data.object);
         createBookingCheckout(event.data.object);
+    }
 
     res.status(200).json({ received: true });
 };

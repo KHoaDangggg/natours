@@ -8,11 +8,9 @@ block content
         each user in users
             .card(style='')
                 img.card-img-top(src=`img/users/${user.photo}`, alt=`Photo of ${user.name}`)
-                .card-body(data-userId = `${user.id}`)
+                .card-body(data-userid = `${user.id}`)
                     h5.card-title= user.name 
                     - const role = (user.role)[0].toUpperCase() + (user.role).substring(1)
                     p.card-text= role 
                     p.card-text #{user.email}
                     a(href=`/user/${user.id}`) More
-block append script 
-    script(src="/js/deleteUser.mjs") 
